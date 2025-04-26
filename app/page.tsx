@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 
 export default async function Home() {
-  const prisma = new PrismaClient();
   const posts = await prisma.post.findMany();
   return (
     <div>
@@ -10,7 +9,7 @@ export default async function Home() {
       <ul className="mt-4 space-y-2">
         {posts.map((post: any) => (
           <li key={post.id}>
-            <Link href={`/${post.slug}`} className="text-lg text-blue-700 hover:underline">
+            <Link href={`/${post.slug}`} className="text-blue-700 hover:underline">
               {post.title}
             </Link>
           </li>

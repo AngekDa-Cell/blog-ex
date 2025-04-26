@@ -1,5 +1,5 @@
 // app/[slug]/page.tsx
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 
 interface Props {
   // Aquí viene como Promise<{ slug: string }>
@@ -9,7 +9,6 @@ interface Props {
 }
 
 export default async function PostPage(props: Props) {
-  const prisma = new PrismaClient();
   // 1) Esperamos a que Next.js nos entregue el objeto params
   const { slug } = await props.params;
 
